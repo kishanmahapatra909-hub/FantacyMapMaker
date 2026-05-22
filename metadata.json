@@ -1,0 +1,6 @@
+{
+  "name": "Fantasy Game Board Maker",
+  "description": "A visually rich, fantasy-inspired game board creator with drag-and-drop assets, custom paths, and immersive medieval visuals.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
