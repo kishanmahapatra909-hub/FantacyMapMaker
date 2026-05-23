@@ -4,9 +4,9 @@ import { createServer as createViteServer } from 'vite';
 import { fileURLToPath } from 'url';
 import compression from 'compression';
 
-// Define safe path utilities for environment compatibility if needed
-const _filename = typeof import.meta !== 'undefined' && import.meta.url ? fileURLToPath(import.meta.url) : '';
-const _dirname = _filename ? path.dirname(_filename) : '';
+// Define standard ES Module path utilities
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 async function startServer() {
   const app = express();
