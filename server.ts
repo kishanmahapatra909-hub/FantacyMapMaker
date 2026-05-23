@@ -6,11 +6,11 @@ import compression from 'compression';
 
 // Define standard ES Module path utilities
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = path.dirname(__filename); // This points directly to the 'dist' folder in production!
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
+  const port = process.env.PORT || 3000;
 
   app.use(compression());
   app.use(express.json());
@@ -34,15 +34,17 @@ async function startServer() {
     });
     app.use(vite.middlewares);
   } else {
-    const distPath = path.join(process.cwd(), 'dist');
-    app.use(express.static(distPath));
+    // CRITICAL FIX: Since this server file is built into /dist, 
+    // __dirname already represents the /dist folder itself.
+    app.use(express.static(__dirname));
     app.get('*', (req, res) => {
-      res.sendFile(path.join(distPath, 'index.html'));
+      res.sendFile(path.join(__dirname, 'index.html'));
     });
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+  // CRITICAL FIX: Remove '0.0.0.0' to let Hostinger naturally proxy route the port mapping
+  app.listen(Number(port), () => {
+    console.log(`Server running safely on port ${port}`);
   });
 }
 
