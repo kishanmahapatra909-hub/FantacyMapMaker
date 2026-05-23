@@ -474,7 +474,7 @@ export const ASSETS = {
     { name: 'Radar', src: 'https://img.icons8.com/?size=100&id=CNJFsNbElo63&format=png&color=000000', type: 'stage', subType: 'Radar' },
     { name: 'Radar 2', src: 'https://img.icons8.com/?size=100&id=NkX2DLO7ATck&format=png&color=000000', type: 'stage', subType: 'Radar 2' },
     { name: 'Antena', src: 'https://img.icons8.com/?size=100&id=SHYMAehqJN1p&format=png&color=000000', type: 'stage', subType: 'Antena' },
-    { name: 'Pirate Island Quest Map', src: pirateImg, type: 'stage', subType: 'pirate-island-quest-map' },
+    
 
     
   
