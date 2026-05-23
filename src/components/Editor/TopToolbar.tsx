@@ -4,7 +4,7 @@ import {
   ZoomIn, ZoomOut, Play, Maximize, Minimize, Trash2
 } from 'lucide-react';
 import { useEditorStore } from '../../store/useEditorStore';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { jsPDF } from 'jspdf';
 
 interface TopToolbarProps {
@@ -21,6 +21,14 @@ export const TopToolbar: React.FC<TopToolbarProps> = ({ onBack }) => {
 
   const [isSaving, setIsSaving] = React.useState(false);
   const [isMobile, setIsMobile] = React.useState(false);
+  const [toastMessage, setToastMessage] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    if (toastMessage) {
+      const timer = setTimeout(() => setToastMessage(null), 3500);
+      return () => clearTimeout(timer);
+    }
+  }, [toastMessage]);
 
   React.useEffect(() => {
     loadConfig();
@@ -47,7 +55,7 @@ export const TopToolbar: React.FC<TopToolbarProps> = ({ onBack }) => {
     const hasUnsavedChanges = !saved || JSON.stringify(config) !== saved;
     
     if (hasUnsavedChanges) {
-      alert('Please save your canvas first.');
+      setToastMessage('Please click Save Progress first so all elements are formatted correctly.');
       return;
     }
 
@@ -183,7 +191,23 @@ export const TopToolbar: React.FC<TopToolbarProps> = ({ onBack }) => {
   };
 
   return (
-    <header className="h-16 border-b border-[#3a3022] bg-[#1a1814] flex items-center justify-between px-3 md:px-6 z-50">
+    <>
+      <AnimatePresence>
+        {toastMessage && (
+          <motion.div
+            initial={{ opacity: 0, y: -50, scale: 0.9 }}
+            animate={{ opacity: 1, y: 16, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            className="fixed top-16 left-1/2 -translate-x-1/2 z-[9999] bg-[#1a1814] border-2 border-fantasy-gold px-6 py-3 rounded shadow-[0_10px_30px_rgba(0,0,0,0.85)] flex items-center gap-3 text-fantasy-gold font-serif text-[11px] uppercase tracking-wider select-none pointer-events-none"
+          >
+            <span className="w-2 h-2 rounded-full bg-fantasy-gold animate-pulse" />
+            {toastMessage}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <header className="h-16 border-b border-[#3a3022] bg-[#1a1814] flex items-center justify-between px-3 md:px-6 z-50">
       <div className="flex items-center gap-2 md:gap-6">
         <button 
           onClick={onBack}
@@ -283,6 +307,7 @@ export const TopToolbar: React.FC<TopToolbarProps> = ({ onBack }) => {
         </button>
       </div>
     </header>
+  </>
   );
 };
 

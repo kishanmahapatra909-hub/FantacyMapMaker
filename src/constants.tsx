@@ -1,5 +1,7 @@
 import { Square, Circle, Triangle } from 'lucide-react';
 import React from 'react';
+// @ts-ignore
+import pirateImg from './assets/images/pirate_island_quest_map_1779210700182.png';
 
 export const ASSETS = {
   STAGES: [
@@ -55,6 +57,8 @@ export const ASSETS = {
     { name: 'Car', src: 'https://img.icons8.com/?size=100&id=iCc4Jhkr6cRU&format=png&color=000000', type: 'stage', subType: 'car' },
     { name: 'Truck', src: 'https://img.icons8.com/?size=100&id=JLdAnWscYCuC&format=png&color=000000', type: 'stage', subType: 'truck' },
     { name: 'Cow', src: 'https://img.icons8.com/?size=100&id=yKzfvDUQi1fO&format=png&color=000000', type: 'stage', subType: 'cow' },
+    { name: 'Horse', src: 'https://img.icons8.com/?size=100&id=0YPxCqgQKTtL&format=png&color=000000', type: 'stage', subType: 'Horse' },
+
     { name: 'Sheep', src: 'https://img.icons8.com/?size=100&id=oUEefTUhhoQo&format=png&color=000000', type: 'stage', subType: 'sheep' },
     { name: 'Brown Rooster', src: 'https://img.icons8.com/?size=100&id=101707&format=png&color=000000', type: 'stage', subType: 'rooster' },
     { name: 'Hen', src: 'https://img.icons8.com/?size=100&id=klPznVmtY4DD&format=png&color=000000', type: 'stage', subType: 'hen' },
@@ -145,13 +149,13 @@ export const ASSETS = {
     { name: 'Truck1', src: 'https://img.icons8.com/?size=100&id=qSTAF5uvla0p&format=png&color=000000', type: 'stage', subType: 'Truck1' },
     { name: 'Vintage Car', src: 'https://img.icons8.com/?size=100&id=5WsifS3EdX7C&format=png&color=000000', type: 'stage', subType: 'Vintage Car' },
     { name: 'Jeep', src: 'https://img.icons8.com/?size=100&id=9nzypUxh0wHF&format=png&color=000000', type: 'stage', subType: 'Jeep' },
-    { name: 'Van', src: 'https://img.icons8.com/?size=100&id=9nzypUxh0wHF&format=png&color=000000', type: 'stage', subType: 'Van' },
+    { name: 'Van', src: 'https://img.icons8.com/?size=100&id=14258&format=png&color=000000', type: 'stage', subType: 'Van' },
     { name: 'Van2', src: 'https://img.icons8.com/?size=100&id=tUt7bDvLXEHZ&format=png&color=000000', type: 'stage', subType: 'Van2' },
     { name: 'Pick Up', src: 'https://img.icons8.com/?size=100&id=zSkd6mxXHh6G&format=png&color=000000', type: 'stage', subType: 'Pick Up' },
     { name: 'Pick Up2', src: 'https://img.icons8.com/?size=100&id=smeRhiaM5M9R&format=png&color=000000', type: 'stage', subType: 'Pick Up2' },
     { name: 'F1', src: 'https://img.icons8.com/?size=100&id=_jtfUqyZM2Pw&format=png&color=000000', type: 'stage', subType: 'F1' },
     { name: 'Go Cart', src: 'https://img.icons8.com/?size=100&id=15146&format=png&color=000000', type: 'stage', subType: 'Go Cart' },
-    { name: 'RoadRoller', src: 'https://img.icons8.com/?size=100&id=pxBohtxhGrZ0&format=png&color=000000', type: 'stage', subType: 'RoadRoller' },
+    { name: 'RoadRoller', src: 'https://img.icons8.com/?size=100&id=dpJdCjL29GYv&format=png&color=000000', type: 'stage', subType: 'RoadRoller' },
     { name: 'ForkLift', src: 'https://img.icons8.com/?size=100&id=26312&format=png&color=000000', type: 'stage', subType: 'ForkLift' },
     { name: 'TowTruck', src: 'https://img.icons8.com/?size=100&id=20865&format=png&color=000000', type: 'stage', subType: 'TowTruck' },
     { name: 'CraneTruck', src: 'https://img.icons8.com/?size=100&id=pxBohtxhGrZ0&format=png&color=000000', type: 'stage', subType: 'CraneTruck' },
@@ -333,6 +337,15 @@ export const ASSETS = {
     { name: 'Emu', src: 'https://img.icons8.com/?size=100&id=m5yDry729w3f&format=png&color=000000', type: 'stage', subType: 'emu' },
     { name: 'Llama', src: 'https://img.icons8.com/?size=100&id=tzZXfNBcvjcc&format=png&color=000000', type: 'stage', subType: 'llama' },
     { name: 'Chicken', src: 'https://img.icons8.com/?size=100&id=5kU7J5r1PwTt&format=png&color=000000', type: 'stage', subType: 'chicken' },
+    { name: 'Zebra', src: 'https://img.icons8.com/?size=100&id=5LKKATi9CVcS&format=png&color=000000', type: 'stage', subType: 'zebra' },
+    { name: 'Fox', src: 'https://img.icons8.com/?size=100&id=zZZF3jGvYp4A&format=png&color=000000', type: 'stage', subType: 'fox' },
+    { name: 'Cheetah', src: 'https://img.icons8.com/?size=100&id=pUbIfur736Lt&format=png&color=000000', type: 'stage', subType: 'cheetah' },
+    { name: 'Wild Boar', src: 'https://img.icons8.com/?size=100&id=2R5IE9H5ssm8&format=png&color=000000', type: 'stage', subType: 'wild-boar' },
+    { name: 'Vulture', src: 'https://img.icons8.com/?size=100&id=Ry8UMzPbDNv9&format=png&color=000000', type: 'stage', subType: 'vulture' },
+    { name: 'Ostrich', src: 'https://img.icons8.com/?size=100&id=UOOktdYeFkNo&format=png&color=000000', type: 'stage', subType: 'ostrich' },
+    { name: 'Hippopotamus', src: 'https://img.icons8.com/?size=100&id=MoJKNn2q4Rom&format=png&color=000000', type: 'stage', subType: 'hippopotamus' },
+    { name: 'Peacock', src: 'https://img.icons8.com/?size=100&id=S3wGjKRpyspY&format=png&color=000000', type: 'stage', subType: 'peacock' },
+    { name: 'Orangutan', src: 'https://img.icons8.com/?size=100&id=IjAhlH19oj3B&format=png&color=000000', type: 'stage', subType: 'orangutan' },
     { name: 'Television', src: 'https://img.icons8.com/?size=100&id=97c9kYT7GZRT&format=png&color=000000', type: 'stage', subType: 'television' },
     { name: 'Laptop', src: 'https://img.icons8.com/?size=100&id=W71gI8WAwOuF&format=png&color=000000', type: 'stage', subType: 'laptop' },
     { name: 'Office Table', src: 'https://img.icons8.com/?size=100&id=lKznthLupLSM&format=png&color=000000', type: 'stage', subType: 'office-table' },
@@ -359,6 +372,8 @@ export const ASSETS = {
     { name: 'Bath Tub', src: 'https://img.icons8.com/?size=100&id=318OIBZIBoyw&format=png&color=000000', type: 'stage', subType: 'bath-tub' },
     { name: 'Bed', src: 'https://img.icons8.com/?size=100&id=JF5jAha6Jh4N&format=png&color=000000', type: 'stage', subType: 'bed' },
     { name: 'Aquarium', src: 'https://img.icons8.com/?size=100&id=D-11piArA-4b&format=png&color=000000', type: 'stage', subType: 'aquarium' },
+    { name: 'Xylophone', src: 'https://img.icons8.com/?size=100&id=AT8FOxKKYMud&format=png&color=000000', type: 'stage', subType: 'Xylophone' },
+
     { name: 'Syringe', src: 'https://img.icons8.com/?size=100&id=FXq4D8KeVVd3&format=png&color=000000', type: 'stage', subType: 'syringe' },
     { name: 'Gas Station', src: 'https://img.icons8.com/?size=100&id=Yjf6rB_2MNTp&format=png&color=000000', type: 'stage', subType: 'gas-station' },
     { name: 'Humming Bird', src: 'https://img.icons8.com/?size=100&id=_tOGCvyYkx7s&format=png&color=000000', type: 'stage', subType: 'hummingbird' },
@@ -430,6 +445,40 @@ export const ASSETS = {
     { name: 'Family 2', src: 'https://img.icons8.com/?size=100&id=KlV03IdxAGz9&format=png&color=000000', type: 'stage', subType: 'family-2' },
     { name: 'Police Station', src: 'https://img.icons8.com/?size=100&id=juJ5xbD4GlSI&format=png&color=000000', type: 'stage', subType: 'police-station' },
     { name: 'PoliceMan', src: 'https://img.icons8.com/?size=100&id=wmabRLqWZSyW&format=png&color=000000', type: 'stage', subType: 'policeman' },
+  
+    { name: 'Plane', src: 'https://img.icons8.com/?size=100&id=HBosBP8N46Cw&format=png&color=000000', type: 'stage', subType: 'Plane' },
+    { name: 'Tank', src: 'https://img.icons8.com/?size=100&id=xPDXxIwbSBec&format=png&color=000000', type: 'stage', subType: 'Tank' },  
+    { name: 'Tank 1', src: 'https://img.icons8.com/?size=100&id=xPDXxIwbSBec&format=png&color=000000', type: 'stage', subType: 'Tank 1' }, 
+    { name: 'Tank 2', src: 'https://img.icons8.com/?size=100&id=7rzts2yqxihz&format=png&color=000000', type: 'stage', subType: 'Tank 2' },
+    { name: 'Tank 3', src: 'https://img.icons8.com/?size=100&id=xPDXxIwbSBec&format=png&color=000000', type: 'stage', subType: 'Tank 3' },
+    { name: 'Military Truck', src: 'https://img.icons8.com/?size=100&id=xPDXxIwbSBec&format=png&color=000000', type: 'stage', subType: 'Military Truck' },
+    { name: 'Missile Truck', src: 'https://img.icons8.com/?size=100&id=YZRcggF5sppd&format=png&color=000000', type: 'stage', subType: 'Missile Truck' },
+    { name: 'Radar Truck', src: 'https://img.icons8.com/?size=100&id=Upqjlx8tfuCy&format=png&color=000000', type: 'stage', subType: 'Radar Truck' },
+    { name: 'Military Truck 1', src: 'https://img.icons8.com/?size=100&id=3XgVU6ShXhON&format=png&color=000000', type: 'stage', subType: 'Military Truck 1' },
+    { name: 'Military Jeep', src: 'https://img.icons8.com/?size=100&id=dGIYGgYMOW3g&format=png&color=000000', type: 'stage', subType: 'Military Jeep' },
+    { name: 'Military Vehicle', src: 'https://img.icons8.com/?size=100&id=BBPr6XLyn4ow&format=png&color=000000', type: 'stage', subType: 'Military Vehicle' },
+    { name: 'Amphibious', src: 'https://img.icons8.com/?size=100&id=R3bD0q9Fdt95&format=png&color=000000', type: 'stage', subType: 'Amphibious' },
+    { name: 'Missile', src: 'https://img.icons8.com/?size=100&id=YZRcggF5sppd&format=png&color=000000', type: 'stage', subType: 'Missile' },
+    { name: 'Jet 1', src: 'https://img.icons8.com/?size=100&id=XRrGocZI5lJ6&format=png&color=000000', type: 'stage', subType: 'Jet 1' },
+    { name: 'Jet 2', src: 'https://img.icons8.com/?size=100&id=PSy8cmL8dg8H&format=png&color=000000', type: 'stage', subType: 'Jet 2' },
+    { name: 'Military Plane', src: 'https://img.icons8.com/?size=100&id=Z7MXXXdECvkC&format=png&color=000000', type: 'stage', subType: 'Military Plane' },
+    { name: 'Jet 3', src: 'https://img.icons8.com/?size=100&id=hzdkeBvTsJMx&format=png&color=000000', type: 'stage', subType: 'Jet 3' },
+    { name: 'Helicopter', src: 'https://img.icons8.com/?size=100&id=xQr0cGL5A0Kr&format=png&color=000000', type: 'stage', subType: 'Helicopter' },
+    { name: 'Small Plane', src: 'https://img.icons8.com/?size=100&id=H0vyGejA2WFt&format=png&color=000000', type: 'stage', subType: 'Small Plane' },
+    { name: 'Helicopter 2', src: 'https://img.icons8.com/?size=100&id=rkZW4D6oyaCw&format=png&color=000000', type: 'stage', subType: 'Helicopter 2' },
+    { name: 'Machine Gun', src: 'https://img.icons8.com/?size=100&id=nl9GYW47JudZ&format=png&color=000000', type: 'stage', subType: 'Machine Gun' },
+    { name: 'Machine Gun 2', src: 'https://img.icons8.com/?size=100&id=dV6jDzZuGXpm&format=png&color=000000', type: 'stage', subType: 'Machine Gun 2' },
+    { name: 'Rifle', src: 'https://img.icons8.com/?size=100&id=1hREEWjwvYoZ&format=png&color=000000', type: 'stage', subType: 'Rifle' },
+    { name: 'Pistol', src: 'https://img.icons8.com/?size=100&id=4aJr7fp5A07v&format=png&color=000000', type: 'stage', subType: 'Pistol' },
+    { name: 'Rifle 1', src: 'https://img.icons8.com/?size=100&id=EFOE3lOZvVq4&format=png&color=000000', type: 'stage', subType: 'Rifle 1' },
+    { name: 'Radar', src: 'https://img.icons8.com/?size=100&id=CNJFsNbElo63&format=png&color=000000', type: 'stage', subType: 'Radar' },
+    { name: 'Radar 2', src: 'https://img.icons8.com/?size=100&id=NkX2DLO7ATck&format=png&color=000000', type: 'stage', subType: 'Radar 2' },
+    { name: 'Antena', src: 'https://img.icons8.com/?size=100&id=SHYMAehqJN1p&format=png&color=000000', type: 'stage', subType: 'Antena' },
+    { name: 'Pirate Island Quest Map', src: pirateImg, type: 'stage', subType: 'pirate-island-quest-map' },
+
+    
+  
+  
   ],
 };
 
@@ -446,7 +495,7 @@ export const MAP_TEMPLATES = [
   { name: 'Green Hills', url: 'https://i.postimg.cc/vBL46y2c/River-Hill.png' },
   { name: 'Valley-3', url: 'https://i.postimg.cc/N06rsY1n/Valley-3.jpg' },
   { name: 'Green Landscape', url: 'https://i.postimg.cc/9fdqmVGS/Valley-1.jpg' },
-  { name: 'Pirate Island Quest', url: '/src/assets/images/pirate_island_quest_map_1779210700182.png' },
+  { name: 'Pirate Island Quest', url: pirateImg },
   { name: 'Road', url: 'https://i.postimg.cc/hGL7DgLD/Road.jpg' },
   { name: 'Snow Realm', url: 'https://i.postimg.cc/N06rsY1J/Snow-Land.png' },
   { name: 'Desert Oasis', url: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?auto=format&fit=crop&q=80&w=1000' },

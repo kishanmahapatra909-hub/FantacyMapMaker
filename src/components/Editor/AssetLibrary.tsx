@@ -5,7 +5,7 @@ import { useEditorStore } from '../../store/useEditorStore';
 import { Plus, Image as ImageIcon, Search, X, RotateCcw } from 'lucide-react';
 
 export const AssetLibrary: React.FC = () => {
-  const { addObject, setBackground, setBoardShape, config } = useEditorStore();
+  const { addObject, setBackground, setBoardShape, config, stage, zoom } = useEditorStore();
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredAssets = searchQuery.trim()
@@ -15,12 +15,26 @@ export const AssetLibrary: React.FC = () => {
     : ASSETS.STAGES;
 
   const handleAddAsset = (asset: any) => {
+    let centerX = 750; // default board width (1500) / 2
+    let centerY = 500; // default board height (1000) / 2
+
+    if (stage) {
+      try {
+        const stageWidth = stage.width() || (stage.container()?.offsetWidth || 1500);
+        const stageHeight = stage.height() || (stage.container()?.offsetHeight || 1000);
+        centerX = (stageWidth / zoom) / 2;
+        centerY = (stageHeight / zoom) / 2;
+      } catch (e) {
+        console.error("Error calculating stage center:", e);
+      }
+    }
+
     addObject({
       type: asset.type,
       subType: asset.subType,
       src: asset.src,
-      x: 100,
-      y: 100,
+      x: centerX - 40, // Centering the 80x80 elements
+      y: centerY - 40,
       width: 80,
       height: 80,
       fill: '#ffd700',

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Hero } from './Hero';
-import { motion } from 'motion/react';
-import { Sword, Shield, Map as MapIcon, Layers, Download, Sparkles, X, Mail } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Sword, Shield, Map as MapIcon, Layers, Download, Sparkles, X, Mail, Palette, Image, Dices, BookOpen, ArrowUp } from 'lucide-react';
 
 interface LandingViewProps {
   onStart: () => void;
@@ -9,9 +9,31 @@ interface LandingViewProps {
 
 export const LandingView: React.FC<LandingViewProps> = ({ onStart }) => {
   const [activeModal, setActiveModal] = useState<'privacy' | 'about' | 'support' | null>(null);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (typeof window !== 'undefined') {
+        setShowScrollTop(window.scrollY > 400);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   const handleLinkClick = (link: string) => {
-    if (link === 'Privacy Scrolls') {
+    if (link === 'Chronicles') {
+      onStart();
+    } else if (link === 'Privacy and Policy' || link === 'Privacy Scrolls') {
       setActiveModal('privacy');
     } else if (link === 'About US' || link === 'The Guild') {
       setActiveModal('about');
@@ -33,26 +55,140 @@ export const LandingView: React.FC<LandingViewProps> = ({ onStart }) => {
       </div>
 
       <div className="relative z-10">
+        {/* Ultra-thin Navigation Header */}
+        <header className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-2.5 bg-black/40 backdrop-blur-md border-b border-[#3a3022]/30">
+          {/* Left Side: Logo and Brand Name */}
+          <div className="flex items-center gap-2">
+            <img 
+              src="https://i.postimg.cc/rpyZ4WwW/Fantacy.png" 
+              alt="FantacyMapMaker Logo" 
+              className="h-[18px] w-auto select-none rounded-sm"
+              referrerPolicy="no-referrer"
+            />
+            <span className="font-serif text-[13px] font-bold text-fantasy-gold uppercase tracking-[0.15em] select-none">
+              FantacyMapMaker
+            </span>
+          </div>
+
+          {/* Right Side: Links */}
+          <nav className="flex items-center gap-6">
+            <button 
+              onClick={() => setActiveModal('about')}
+              className="text-[#e0d8c3]/85 hover:text-fantasy-gold font-sans text-[11px] font-medium uppercase tracking-wider transition-colors cursor-pointer"
+            >
+              About us
+            </button>
+            <button 
+              onClick={() => setActiveModal('support')}
+              className="text-[#e0d8c3]/85 hover:text-fantasy-gold font-sans text-[11px] font-medium uppercase tracking-wider transition-colors cursor-pointer"
+            >
+              Contact
+            </button>
+          </nav>
+        </header>
+
         <Hero onStart={onStart} />
         
-        {/* Features Section - Solid Rich Medieval Backdrop */}
-        <section className="py-32 px-6 relative z-10 border-y border-[#3a3022] bg-[#12100e]">
-          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-            <FeatureCard 
-              icon={<Layers className="w-8 h-8 text-fantasy-gold" />}
-              title="Grimoire of Assets"
-              description="Stack textures, paths, and magical relics with a sophisticated layering system."
-            />
-            <FeatureCard 
-              icon={<Shield className="w-8 h-8 text-fantasy-gold" />}
-              title="Medieval Cartography"
-              description="Choose from hand-crafted fantasy templates designed for high-stakes adventure."
-            />
-            <FeatureCard 
-              icon={<Download className="w-8 h-8 text-fantasy-gold" />}
-              title="Noble Relics"
-              description="Download your artifacts in lossless PNG or print-ready PDF formats."
-            />
+        {/* Main Introduction Section */}
+        <section className="py-24 px-6 relative z-10 border-b border-[#3a3022] bg-[#161411]">
+          <div className="max-w-4xl mx-auto text-center space-y-6">
+            <h2 className="font-serif text-3xl md:text-4xl text-fantasy-gold uppercase tracking-[0.2em] font-bold drop-shadow">
+              Welcome to FantacyMapMaker
+            </h2>
+            <div className="w-24 h-0.5 bg-fantasy-gold mx-auto my-4 opacity-70"></div>
+            <p className="text-stone-300 font-sans text-base md:text-lg leading-relaxed max-w-3xl mx-auto">
+              Welcome to FantacyMapMaker, the ultimate interactive playground where kids can transform their wildest imaginations into fully playable board games! Whether you want to design a custom map from scratch, upload your own drawings, or jump straight into classic favorites, FantacyMapMaker combines creative design with digital play.
+            </p>
+            <p className="text-amber-100/90 font-serif text-sm md:text-base italic max-w-2xl mx-auto leading-relaxed border-t border-[#3a3022]/40 pt-4 font-semibold">
+              It’s more than just a game maker—it’s an intuitive educational tool where early learners can master alphabets, numbers, and vocabulary through the power of play. Drag, drop, create, and roll the dice!
+            </p>
+          </div>
+        </section>
+
+        {/* Core Features Section */}
+        <section className="py-24 px-6 relative z-10 border-b border-[#3a3022] bg-[#0f0d0b]">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="font-serif text-2xl md:text-3xl text-fantasy-gold uppercase tracking-[0.2em] font-bold">
+                Core Features
+              </h2>
+              <div className="w-16 h-0.5 bg-fantasy-gold mx-auto mt-4 opacity-50"></div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+              {/* Feature 1: Drag & Drop */}
+              <div className="bg-[#1a1714] border border-[#3a3022] rounded p-8 hover:border-fantasy-gold transition-all duration-300 flex flex-col sm:flex-row gap-5">
+                <div className="p-4 bg-[#110f0d] rounded h-fit medieval-border text-fantasy-gold flex items-center justify-center shrink-0">
+                  <Palette className="w-6 h-6" />
+                </div>
+                <div className="space-y-3">
+                  <h3 className="font-serif text-lg text-fantasy-gold uppercase tracking-wider font-semibold flex items-center gap-2">
+                    <span>🎨</span> Drag-and-Drop Map Creator
+                  </h3>
+                  <p className="text-stone-400 text-xs md:text-sm leading-relaxed font-sans">
+                    Bring your board game to life using our massive library of predefined templates, vibrant backgrounds, and whimsical icons. Just select, drag, and position your elements anywhere on the canvas.
+                  </p>
+                </div>
+              </div>
+
+              {/* Feature 2: Custom Image Uploads */}
+              <div className="bg-[#1a1714] border border-[#3a3022] rounded p-8 hover:border-fantasy-gold transition-all duration-300 flex flex-col sm:flex-row gap-5">
+                <div className="p-4 bg-[#110f0d] rounded h-fit medieval-border text-fantasy-gold flex items-center justify-center shrink-0">
+                  <Image className="w-6 h-6" />
+                </div>
+                <div className="space-y-3">
+                  <h3 className="font-serif text-lg text-fantasy-gold uppercase tracking-wider font-semibold flex items-center gap-2">
+                    <span>🖼️</span> Custom Image Uploads
+                  </h3>
+                  <p className="text-stone-400 text-xs md:text-sm leading-relaxed font-sans">
+                    Want to be the hero of your own game? Upload your own drawings, family photos, or custom graphics to build a completely unique board game world.
+                  </p>
+                </div>
+              </div>
+
+              {/* Feature 3: All-in-One Digital Game Zone */}
+              <div className="bg-[#1a1714] border border-[#3a3022] rounded p-8 hover:border-fantasy-gold transition-all duration-300 flex flex-col sm:flex-row gap-5">
+                <div className="p-4 bg-[#110f0d] rounded h-fit medieval-border text-fantasy-gold flex items-center justify-center shrink-0">
+                  <Dices className="w-6 h-6" />
+                </div>
+                <div className="space-y-3">
+                  <h3 className="font-serif text-lg text-fantasy-gold uppercase tracking-wider font-semibold flex items-center gap-2">
+                    <span>🎲</span> All-in-One Digital Game Zone
+                  </h3>
+                  <p className="text-stone-400 text-xs md:text-sm leading-relaxed font-sans">
+                    Ready to play? Switch instantly to our Game Area to play fully interactive digital versions of beloved classics like Ludo, Snakes and Ladders, and Tic-Tac-Toe.
+                  </p>
+                </div>
+              </div>
+
+              {/* Feature 4: Playful Learning */}
+              <div className="bg-[#1a1714] border border-[#3a3022] rounded p-8 hover:border-fantasy-gold transition-all duration-300 flex flex-col sm:flex-row gap-5">
+                <div className="p-4 bg-[#110f0d] rounded h-fit medieval-border text-fantasy-gold flex items-center justify-center shrink-0">
+                  <BookOpen className="w-6 h-6" />
+                </div>
+                <div className="space-y-3">
+                  <h3 className="font-serif text-lg text-fantasy-gold uppercase tracking-wider font-semibold flex items-center gap-2">
+                    <span>🧠</span> Playful Learning & Early Education
+                  </h3>
+                  <p className="text-stone-400 text-xs md:text-sm leading-relaxed font-sans">
+                    Designed with young learners in mind! Built-in educational templates help kids learn numbers, practice the alphabet, and build vocabulary while designing their maps.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Why Parents & Educators Love FantacyMapMaker */}
+        <section className="py-24 px-6 relative z-10 border-b border-[#3a3022] bg-[#12100e]">
+          <div className="max-w-4xl mx-auto text-center space-y-6">
+            <h2 className="font-serif text-2xl md:text-3xl text-fantasy-gold uppercase tracking-[0.2em] font-bold">
+              Why Parents & Educators Love FantacyMapMaker
+            </h2>
+            <div className="w-16 h-0.5 bg-fantasy-gold mx-auto my-4 opacity-50"></div>
+            <p className="text-stone-300 font-sans text-base leading-relaxed max-w-3xl mx-auto">
+              FantacyMapMaker bridges the gap between screen time and cognitive development. By designing their own rules, paths, and visual layouts, children develop spatial awareness, logical thinking, and storytelling skills in an environment that feels like pure fun.
+            </p>
           </div>
         </section>
 
@@ -61,31 +197,34 @@ export const LandingView: React.FC<LandingViewProps> = ({ onStart }) => {
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between gap-16">
             <div className="max-w-sm">
               <div className="flex items-center gap-3 mb-6">
-                 <div className="w-10 h-10 bg-fantasy-gold rounded-sm flex items-center justify-center transform rotate-45 medieval-border">
-                    <div className="transform -rotate-45 text-[#1a1814] font-bold text-xl font-serif">F</div>
-                 </div>
-                 <h2 className="font-serif text-2xl text-fantasy-gold uppercase tracking-[0.2em] drop-shadow">Guild of Makers</h2>
+                <img 
+                  src="https://i.postimg.cc/rpyZ4WwW/Fantacy.png" 
+                  alt="FantacyMapMaker Logo" 
+                  className="h-10 w-auto select-none rounded-md border border-[#3a3022]/40"
+                  referrerPolicy="no-referrer"
+                />
+                <h2 className="font-serif text-2xl text-fantasy-gold uppercase tracking-[0.2em] drop-shadow">FantacyMapMaker</h2>
               </div>
               <p className="text-zinc-400 font-serif leading-relaxed text-sm italic font-bold">
-                "Every great adventure begins on the parchment of a visionary." Craftsmen of digital worlds, we provide the tools, you provide the legend.
+                "Every great game begins on the canvas of a visionary." Create, design, and play custom board games with your own imagination.
               </p>
             </div>
             
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-12">
-              <FooterLinkGroup title="The Sanctuary" links={['Chronicles', 'About US', 'Testimonials']} onLinkClick={handleLinkClick} />
-              <FooterLinkGroup title="Ancient Laws" links={['Privacy Scrolls', 'Ethics', 'User Rights']} onLinkClick={handleLinkClick} />
-              <FooterLinkGroup title="Messenger" links={['Messenger', 'Support', 'Discord Forge']} onLinkClick={handleLinkClick} />
+              <FooterLinkGroup title="Pages" links={['Chronicles', 'About US']} onLinkClick={handleLinkClick} />
+              <FooterLinkGroup title="Privacy & Terms" links={['Privacy and Policy']} onLinkClick={handleLinkClick} />
+              <FooterLinkGroup title="Contact" links={['Support']} onLinkClick={handleLinkClick} />
             </div>
           </div>
           
           <div className="max-w-6xl mx-auto mt-32 pt-8 border-t border-[#3a3022] flex justify-between items-center text-[9px] text-[#4d4030] uppercase tracking-[0.4em] font-bold">
-            <span>MDCCXXVI © Fantasy Game Board Guild</span>
-            <span>Etched in the Digital Void</span>
+            <span>© FantacyMapMaker Team</span>
+            <span>All Rights Reserved</span>
           </div>
         </footer>
       </div>
 
-      {/* MODAL PARCHMENT SCROLL OVERLAY */}
+      {/* MODAL INFORMATION OVERLAY */}
       {activeModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-md bg-black/85 transition-all">
           <div className="w-full max-w-3xl bg-[#f4efe2] text-[#2a2015] border-8 border-double border-[#8b5e3c] rounded p-6 md:p-10 max-h-[85vh] overflow-y-auto shadow-[0_0_50px_rgba(0,0,0,0.8)] relative font-serif class-scroll custom-scrollbar">
@@ -94,7 +233,7 @@ export const LandingView: React.FC<LandingViewProps> = ({ onStart }) => {
             <button 
               onClick={() => setActiveModal(null)}
               className="absolute top-4 right-4 p-2 rounded-full border border-[#8b5e3c]/40 hover:bg-[#ebdcb9] text-[#5c4033] transition-colors cursor-pointer"
-              title="Close Scroll"
+              title="Close"
             >
               <X className="w-5 h-5" />
             </button>
@@ -107,7 +246,7 @@ export const LandingView: React.FC<LandingViewProps> = ({ onStart }) => {
                     <Shield className="w-6 h-6 text-[#8b5e3c]" />
                   </div>
                   <h1 className="text-xl md:text-2xl font-serif font-black uppercase tracking-[0.2em] text-[#5c4033]">
-                    Privacy Scrolls
+                    Privacy Policy
                   </h1>
                   <p className="text-[10px] uppercase font-bold tracking-widest text-[#8b5e3c]/80 mt-1">
                     Effective & Last Updated: May 22, 2026
@@ -115,7 +254,7 @@ export const LandingView: React.FC<LandingViewProps> = ({ onStart }) => {
                 </div>
 
                 <div className="bg-[#ebdcb9]/40 border border-[#8b5e3c]/20 p-4 rounded text-xs italic text-[#5c4033] leading-relaxed">
-                  Welcome to <strong>FantacyMapMaker</strong>! We are committed to safeguarding the digital sanctuary of our young cartographers and providing absolute peace of mind to parents, guardians, and educators. 
+                  Welcome to <strong>FantacyMapMaker</strong>! We are committed to safeguarding the safety and privacy of our young designers and providing absolute peace of mind to parents, guardians, and educators. 
                   As a platform designed with children in mind, we take safety and transparency seriously. We adhere strictly to the principles of the <strong>Children's Online Privacy Protection Act (COPPA)</strong>.
                 </div>
 
@@ -124,16 +263,16 @@ export const LandingView: React.FC<LandingViewProps> = ({ onStart }) => {
                     1. Information We Collect
                   </h2>
                   <p className="text-xs leading-relaxed text-[#3d2e1f]">
-                    We believe in minimizing data collection to keep our digital realms completely safe and worry-free:
+                    We believe in minimizing data collection to keep our digital space completely safe and worry-free:
                   </p>
                   <ul className="list-disc pl-5 space-y-1.5 text-xs text-[#3d2e1f]">
                     <li>
-                      <strong>No Mandatory Account Registration:</strong> Children can freely craft and play without needing to provide personal details like names, phone numbers, or email addresses.
+                      <strong>No Mandatory Account Registration:</strong> Children can freely create and play without needing to provide personal details like names, phone numbers, or email addresses.
                     </li>
                     <li>
                       <strong>Uploaded Images & Assets:</strong> Users can upload custom images from their device to serve as card backgrounds or token icons.
                       <p className="mt-1 italic font-semibold text-[#5c4033]">
-                        🛡️ Crucial Protection: These images are processed entirely locally. They are stored inside your browser's private state, are used solely for your active game board rendering, and are NEVER sent to our servers or shared with any third parties.
+                        🛡️ Privacy Protection: These images are processed entirely locally. They are stored inside your browser's private storage, are used solely for your active game board rendering, and are NEVER sent to our servers or shared with any third parties.
                       </p>
                     </li>
                     <li>
@@ -148,27 +287,27 @@ export const LandingView: React.FC<LandingViewProps> = ({ onStart }) => {
                     Any minimal local information processed on your browser serves only to:
                   </p>
                   <ul className="list-disc pl-5 space-y-1 text-xs text-[#3d2e1f]">
-                    <li>Render your custom board design templates, relics, and tokens safely.</li>
+                    <li>Render your custom board design templates and icons safely.</li>
                     <li>Ensure you do not lose progress on your boards when you close the tab.</li>
                     <li>Provide full interactivity in our digital Game Area (Ludo, Snakes and Ladders, Tic-Tac-Toe).</li>
                   </ul>
 
                   <h2 className="text-xs uppercase tracking-[0.2em] font-black text-[#5c4033] border-b border-[#8b5e3c]/30 pb-1 mt-6">
-                    3. Ultimate Data Security & Standard Third Parties
+                    3. Data Security & Standard Third Parties
                   </h2>
                   <p className="text-xs leading-relaxed text-[#3d2e1f]">
                     We maintain an absolute zero-sharing pledge:
                   </p>
                   <ul className="list-disc pl-5 space-y-1 text-xs text-[#3d2e1f]">
                     <li><strong>No Advertisements:</strong> We do not display dynamic third-party tracking advertisements.</li>
-                    <li><strong>No External Databases:</strong> We don't maintain a centralized user database, ensuring no corporate breaches could compromise files.</li>
+                    <li><strong>No External Databases:</strong> We do not maintain a centralized user database, ensuring no data reaches any external server.</li>
                   </ul>
 
                   <h2 className="text-xs uppercase tracking-[0.2em] font-black text-[#5c4033] border-b border-[#8b5e3c]/30 pb-1 mt-6">
                     4. Parents' Rights & Controls
                   </h2>
                   <p className="text-xs leading-relaxed text-[#3d2e1f]">
-                    You hold supreme authority over your child's digital sandbox. You have the absolute right to view, modify, or delete any local save data. Since everything runs locally, clicking "Clear Browser Data" in your settings will permanently wipe all local board files. For questions, reach out directly at: <a href="mailto:protoolforyou@gmail.com" className="text-[#8b5e3c] font-bold hover:underline">protoolforyou@gmail.com</a>.
+                    You hold full authority over your child's digital sandbox. You have the absolute right to view, modify, or delete any local save data. Since everything runs locally, clicking "Clear Browser Data" in your settings will permanently wipe all local board files. For questions, reach out directly at: <a href="mailto:protoolforyou@gmail.com" className="text-[#8b5e3c] font-bold hover:underline">protoolforyou@gmail.com</a>.
                   </p>
                 </div>
               </div>
@@ -182,7 +321,7 @@ export const LandingView: React.FC<LandingViewProps> = ({ onStart }) => {
                     <Sword className="w-6 h-6 text-[#8b5e3c]" />
                   </div>
                   <h1 className="text-xl md:text-2xl font-serif font-black uppercase tracking-[0.2em] text-[#5c4033]">
-                    The Guild of FantacyMapMaker
+                    About FantacyMapMaker
                   </h1>
                   <p className="text-[10px] uppercase font-bold tracking-widest text-[#8b5e3c]/80 mt-1">
                     Blending MNC Enterprise Expertise with Childhood Imagination
@@ -194,7 +333,7 @@ export const LandingView: React.FC<LandingViewProps> = ({ onStart }) => {
                     Our Origin Story
                   </h2>
                   <p>
-                    <strong>FantacyMapMaker</strong> was built from the ground up by a seasoned <strong>IT Professional with over 15 years of industry experience</strong> in prestigious, world-recognized Multinational Corporations (MNCs). Having spent over a decade constructing high-speed cloud infrastructure and complex enterprise software systems, our builder embarked on a much more inspiring mission: to construct a safe, high-quality, and deeply interactive digital sandbox where children, educators, and parents can work together to bring their own boards to life.
+                    <strong>FantacyMapMaker</strong> was built from the ground up by a seasoned <strong>IT Professional with over 15 years of industry experience</strong> in prestigious, world-recognized Multinational Corporations (MNCs). Having spent over a decade constructing high-speed cloud infrastructure and complex enterprise software systems, our builder embarked on a much more inspiring mission: to construct a safe, high-quality, and deeply interactive digital space where children, educators, and parents can work together to bring their own board games to life.
                   </p>
 
                   <h2 className="text-xs uppercase tracking-[0.2em] font-black text-[#5c4033] border-b border-[#8b5e3c]/30 pb-1 mt-6">
@@ -205,18 +344,18 @@ export const LandingView: React.FC<LandingViewProps> = ({ onStart }) => {
                   </p>
                   <ul className="list-disc pl-5 space-y-1.5 font-sans text-[11px] text-[#3d2e1f]">
                     <li>
-                      <strong>The Creative Forge (Canvas Area):</strong> Kids use simple, satisfying drag-and-drop mechanics to map custom grids, path tiles, beautiful parchment backdrops, and fantasy relics.
+                      <strong>The Design Canvas (Canvas Area):</strong> Kids use simple, satisfying drag-and-drop mechanics to map custom grids, path tiles, beautiful backdrops, and board tokens.
                     </li>
                     <li>
-                      <strong>The Classic Sanctuary (Game Area):</strong> They can instantly put their rules to the test and enjoy timeless multiplayer gems such as <strong>Ludo</strong>, <strong>Snakes & Ladders</strong>, or terminal-guided <strong>Tic-Tac-Toe</strong>.
+                      <strong>The Classic Games (Game Area):</strong> They can instantly put their designs to the test and enjoy timeless multiplayer gems such as <strong>Ludo</strong>, <strong>Snakes & Ladders</strong>, or guided <strong>Tic-Tac-Toe</strong>.
                     </li>
                   </ul>
 
                   <h2 className="text-xs uppercase tracking-[0.2em] font-black text-[#5c4033] border-b border-[#8b5e3c]/30 pb-1 mt-6">
-                    Join Our Guild
+                    Contact Us
                   </h2>
                   <p>
-                    We value simplicity, education, and safe, tranquil environments. If you are an educator hoping to bring tactile map-making to the classroom, a parent with custom ideas, or simply looking to share feedback with the chef d'oeuvre engineer, send your message directly to: <a href="mailto:protoolforyou@gmail.com" className="text-[#8b5e3c] font-bold hover:underline">protoolforyou@gmail.com</a>.
+                    We value simplicity, education, and safe, creative environments. If you are an educator hoping to bring tactile map-making to the classroom, a parent with custom ideas, or simply looking to share feedback with the developer, send your message directly to: <a href="mailto:protoolforyou@gmail.com" className="text-[#8b5e3c] font-bold hover:underline">protoolforyou@gmail.com</a>.
                   </p>
                 </div>
               </div>
@@ -230,7 +369,7 @@ export const LandingView: React.FC<LandingViewProps> = ({ onStart }) => {
                     <Mail className="w-6 h-6 text-[#8b5e3c]" />
                   </div>
                   <h1 className="text-xl md:text-2xl font-serif font-black uppercase tracking-[0.2em] text-[#5c4033]">
-                    Messenger & Support
+                    Help & Support
                   </h1>
                   <p className="text-[10px] uppercase font-bold tracking-widest text-[#8b5e3c]/80 mt-1">
                     Help Desk & Troubleshooting Guide
@@ -239,11 +378,11 @@ export const LandingView: React.FC<LandingViewProps> = ({ onStart }) => {
 
                 <div className="space-y-4 text-xs leading-relaxed text-[#3d2e1f]">
                   <p>
-                    Having trouble with your layout or looking to submit a custom relic suggestion? Review standard instructions below:
+                    Having trouble with your layout or looking to submit a suggestion? Review troubleshooting tips below:
                   </p>
 
                   <h2 className="text-xs uppercase tracking-[0.2em] font-black text-[#5c4033] border-b border-[#8b5e3c]/30 pb-1 mt-4">
-                    Common Cartographer Solutions
+                    Common Support Solutions
                   </h2>
                   
                   <div className="space-y-3 mt-2">
@@ -257,7 +396,7 @@ export const LandingView: React.FC<LandingViewProps> = ({ onStart }) => {
                     <div className="bg-[#ebdcb9]/20 p-3 rounded border border-[#8b5e3c]/15">
                       <strong className="text-xs text-[#5c4033] block mb-1">2. Drag-and-Drop Glitching?</strong>
                       <span className="text-xs text-[#3d2e1f]">
-                        Don't stress! You can double-click or double-tap on any tile, waypoint, or character inside the <strong>Asset Grimoire</strong> panel. This will automatically spawn and duplicate it directly onto the Canvas Board!
+                        Don't worry! You can double-click or double-tap on any tile, badge, or characters inside the <strong>Asset Library</strong> panel. This will automatically spawn and place it directly onto the Canvas Board!
                       </span>
                     </div>
 
@@ -270,10 +409,10 @@ export const LandingView: React.FC<LandingViewProps> = ({ onStart }) => {
                   </div>
 
                   <h2 className="text-xs uppercase tracking-[0.2em] font-black text-[#5c4033] border-b border-[#8b5e3c]/30 pb-1 mt-6">
-                    Contact Chief Engineers
+                    Contact Developer
                   </h2>
                   <p>
-                    For any support queries, full account or clear cookies guides, classroom collaborations, or quick feedback, reach out immediately via:
+                    For any support queries, help clearing files, classroom collaborations, or quick feedback, reach out immediately via:
                   </p>
                   <div className="border border-[#8b5e3c]/30 rounded p-4 bg-[#ebdcb9]/40 flex items-center gap-3">
                     <Mail className="w-5 h-5 text-[#8b5e3c]" />
@@ -291,12 +430,29 @@ export const LandingView: React.FC<LandingViewProps> = ({ onStart }) => {
                 onClick={() => setActiveModal(null)}
                 className="px-6 py-2.5 bg-[#8b5e3c] text-white hover:bg-[#5c4033] font-serif text-[10px] font-bold uppercase tracking-[0.2em] transition-all rounded shadow-md border border-[#8b5e3c]"
               >
-                Seal Scroll & Return to Castle
+                Close and Return
               </button>
             </div>
           </div>
         </div>
       )}
+
+      {/* Auto Scroll Up Button */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            onClick={scrollToTop}
+            className="fixed bottom-8 right-8 z-[999] p-3.5 bg-fantasy-gold hover:bg-amber-400 text-stone-950 font-bold border border-[#3a3022] hover:border-fantasy-gold rounded shadow-[0_4px_20px_rgba(0,0,0,0.6)] hover:shadow-[0_0_15px_rgba(212,175,55,0.6)] transition-all cursor-pointer flex items-center justify-center opacity-95 hover:opacity-100 backdrop-blur-sm focus:outline-none"
+            title="Scroll to Top"
+            aria-label="Scroll to Top"
+          >
+            <ArrowUp className="w-5 h-5 shrink-0" />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

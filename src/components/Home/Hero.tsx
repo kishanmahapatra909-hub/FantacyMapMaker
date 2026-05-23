@@ -33,8 +33,8 @@ export const Hero: React.FC<HeroProps> = ({ onStart }) => {
 
         {/* Highly readable, non-transparent statement background */}
         <div className="mb-12 max-w-2xl mx-auto">
-          <p className="inline-block text-sm md:text-lg lg:text-xl text-[#8a1212] font-serif leading-relaxed font-bold bg-[#faf6eb] px-6 py-3 rounded-2xl border border-[#d4af37]/60 shadow-md">
-            Upload images or choose fantasy templates and transform them into interactive game boards.
+          <p className="inline-block text-xs md:text-base lg:text-lg text-[#8a1212] font-serif leading-relaxed font-bold bg-[#faf6eb] px-6 py-3 rounded-2xl border border-[#d4af37]/60 shadow-md">
+            Upload images or choose dynamic templates and transform them into interactive learning boards—the ultimate canvas to explore, build, and share your ideas.
           </p>
         </div>
 
