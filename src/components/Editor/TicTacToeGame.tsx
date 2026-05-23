@@ -431,7 +431,7 @@ export const TicTacToeGame: React.FC = () => {
         </div>
 
         {/* Turn indicator ribbon */}
-        <div className="hidden md:flex mt-5 w-full max-w-[320px] flex justify-between gap-3 text-center z-10 font-mono">
+        <div className="flex mt-5 w-full max-w-[320px] justify-between gap-3 text-center z-10 font-mono">
           <div className={`flex-1 py-1 px-2 rounded border uppercase text-[9px] tracking-wide font-black ${
             currentPlayer === 'X' && !winner 
               ? 'bg-amber-950/20 border-amber-500 text-amber-400 animate-pulse' 
@@ -447,10 +447,34 @@ export const TicTacToeGame: React.FC = () => {
             🛡️ Player O
           </div>
         </div>
+
+        {/* Mobile/Tablet Controls (shown when console is hidden) */}
+        <div className="flex xl:hidden flex-col gap-2 mt-4 w-full max-w-[320px] z-10 font-mono">
+          <div className="flex gap-2">
+            <button
+              onClick={handleRestart}
+              className="flex-1 py-1.5 bg-[#cca43b]/15 hover:bg-[#cca43b]/25 text-[#cca43b] hover:text-white border border-[#cca43b]/25 hover:border-[#cca43b] rounded transition-all text-[9px] uppercase tracking-wider font-extrabold flex items-center justify-center gap-1.5 cursor-pointer active:scale-[0.98]"
+            >
+              <RotateCcw className="w-3 h-3" />
+              Reboot Game
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                if (confirm("Forfeit active campaign and return to design drafts?")) {
+                  setTictactoeActive(false);
+                }
+              }}
+              className="flex-1 py-1.5 bg-red-950/20 hover:bg-red-950/40 text-red-400 border border-red-900/30 text-[9px] uppercase tracking-wider rounded transition-colors font-bold cursor-pointer"
+            >
+              Retreat
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* RIGHT PANE: THE CONSOLE SIMULATOR & CONTROL DECK */}
-      <div className="hidden md:flex w-full xl:w-[380px] xl:min-w-[380px] flex-col bg-[#120e0c] rounded-lg border border-[#2b221a] p-3 shadow-inner">
+      <div className="hidden xl:flex w-full xl:w-[380px] xl:min-w-[380px] flex-col bg-[#120e0c] rounded-lg border border-[#2b221a] p-3 shadow-inner">
         
         {/* Terminal Header Info */}
         <div className="flex items-center gap-2 mb-2 pb-1.5 border-b border-stone-900 justify-between">

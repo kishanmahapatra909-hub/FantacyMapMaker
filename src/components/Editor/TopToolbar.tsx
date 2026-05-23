@@ -217,9 +217,12 @@ export const TopToolbar: React.FC<TopToolbarProps> = ({ onBack }) => {
         </button>
         <div className="hidden sm:block h-6 w-px bg-[#3a3022]" />
         <div className="flex items-center gap-2 md:gap-3">
-          <div className="hidden md:flex w-8 h-8 bg-fantasy-gold rounded-sm items-center justify-center transform rotate-45 medieval-border shadow-lg">
-            <div className="transform -rotate-45 text-[#1a1814] font-bold text-lg font-serif">F</div>
-          </div>
+          <img 
+            src="https://i.postimg.cc/rpyZ4WwW/Fantacy.png" 
+            alt="Logo" 
+            className="w-7 h-7 object-contain rounded-md border border-[#3a3022]/40"
+            referrerPolicy="no-referrer"
+          />
           <div className="flex flex-col">
             <input
               type="text"

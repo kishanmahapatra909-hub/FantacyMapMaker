@@ -73,6 +73,12 @@ export const LandingView: React.FC<LandingViewProps> = ({ onStart }) => {
           {/* Right Side: Links */}
           <nav className="flex items-center gap-6">
             <button 
+              onClick={onStart}
+              className="text-[#e0d8c3]/85 hover:text-fantasy-gold font-sans text-[11px] font-medium uppercase tracking-wider transition-all cursor-pointer font-bold relative after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[1px] after:bg-fantasy-gold hover:after:w-full after:transition-all"
+            >
+              New Adventure
+            </button>
+            <button 
               onClick={() => setActiveModal('about')}
               className="text-[#e0d8c3]/85 hover:text-fantasy-gold font-sans text-[11px] font-medium uppercase tracking-wider transition-colors cursor-pointer"
             >

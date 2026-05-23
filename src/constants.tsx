@@ -1,4 +1,4 @@
-import { Square, Circle, Triangle } from 'lucide-react';
+import { Square, Circle, Triangle, Diamond, Pentagon, Octagon, Star } from 'lucide-react';
 import React from 'react';
 // @ts-ignore
 import pirateImg from './assets/images/pirate_island_quest_map_1779210700182.png';
@@ -149,7 +149,7 @@ export const ASSETS = {
     { name: 'Truck1', src: 'https://img.icons8.com/?size=100&id=qSTAF5uvla0p&format=png&color=000000', type: 'stage', subType: 'Truck1' },
     { name: 'Vintage Car', src: 'https://img.icons8.com/?size=100&id=5WsifS3EdX7C&format=png&color=000000', type: 'stage', subType: 'Vintage Car' },
     { name: 'Jeep', src: 'https://img.icons8.com/?size=100&id=9nzypUxh0wHF&format=png&color=000000', type: 'stage', subType: 'Jeep' },
-    { name: 'Van', src: 'https://img.icons8.com/?size=100&id=14258&format=png&color=000000', type: 'stage', subType: 'Van' },
+    { name: 'Van', src: 'https://img.icons8.com/?size=100&id=s54er6wjHvQn&format=png&color=000000', type: 'stage', subType: 'Van' },
     { name: 'Van2', src: 'https://img.icons8.com/?size=100&id=tUt7bDvLXEHZ&format=png&color=000000', type: 'stage', subType: 'Van2' },
     { name: 'Pick Up', src: 'https://img.icons8.com/?size=100&id=zSkd6mxXHh6G&format=png&color=000000', type: 'stage', subType: 'Pick Up' },
     { name: 'Pick Up2', src: 'https://img.icons8.com/?size=100&id=smeRhiaM5M9R&format=png&color=000000', type: 'stage', subType: 'Pick Up2' },
@@ -505,4 +505,14 @@ export const BOARD_SHAPES = [
   { name: 'Rectangle', icon: <Square className="w-8 h-8" /> },
   { name: 'Circle', icon: <Circle className="w-8 h-8" /> },
   { name: 'Triangle', icon: <Triangle className="w-8 h-8" /> },
+  { name: 'Diamond', icon: <Diamond className="w-8 h-8" /> },
+  { name: 'Pentagon', icon: <Pentagon className="w-8 h-8" /> },
+  { name: 'Octagon', icon: <Octagon className="w-8 h-8" /> },
+  { name: 'Oval', icon: (
+      <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <ellipse cx="12" cy="12" rx="10" ry="6" />
+      </svg>
+    ) 
+  },
+  { name: 'Star', icon: <Star className="w-8 h-8" /> },
 ];

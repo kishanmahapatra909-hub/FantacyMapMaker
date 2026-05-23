@@ -117,17 +117,30 @@ export const AssetLibrary: React.FC = () => {
       {/* Board Base Shapes */}
        <section>
         <h3 className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-bold mb-4">Board Decree</h3>
-        <div className="grid grid-cols-3 gap-2">
-          {BOARD_SHAPES.map((shape) => (
-            <button
-              key={shape.name}
-              onClick={() => setBoardShape(shape.name as any)}
-              className="flex flex-col items-center justify-center p-3 bg-black/40 border border-[#3a3022] hover:border-fantasy-gold rounded transition-all group"
-            >
-              <div className="text-stone-500 group-hover:text-fantasy-gold transition-colors">{shape.icon}</div>
-              <span className="text-[9px] mt-2 text-stone-500 font-bold uppercase tracking-tighter">{shape.name}</span>
-            </button>
-          ))}
+        <div className="max-h-[165px] overflow-y-auto pr-1 custom-scrollbar">
+          <div className="grid grid-cols-3 gap-2">
+            {BOARD_SHAPES.map((shape) => {
+              const isActive = config.boardShape === shape.name;
+              return (
+                <button
+                  key={shape.name}
+                  onClick={() => setBoardShape(shape.name as any)}
+                  className={`flex flex-col items-center justify-center p-2 rounded transition-all group border cursor-pointer ${
+                    isActive 
+                      ? 'border-fantasy-gold bg-fantasy-gold/15 shadow-[0_0_10px_rgba(212,175,55,0.2)]' 
+                      : 'border-[#3a3022] bg-black/40 hover:border-fantasy-gold'
+                  }`}
+                >
+                  <div className={`transition-colors ${isActive ? 'text-fantasy-gold' : 'text-stone-500 group-hover:text-fantasy-gold'}`}>
+                    {shape.icon}
+                  </div>
+                  <span className={`text-[9px] mt-2 font-bold uppercase tracking-tighter ${isActive ? 'text-fantasy-gold' : 'text-stone-500 group-hover:text-stone-350'}`}>
+                    {shape.name}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </section>
 

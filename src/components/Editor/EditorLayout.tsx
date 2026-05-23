@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { 
   Library, Box, Settings2, Save, Download, 
   Undo, Redo, ZoomIn, ZoomOut, Play, ChevronLeft,
-  Image as ImageIcon, Shapes, MousePointer2, Pin, PinOff
+  Image as ImageIcon, Shapes, Pin, PinOff
 } from 'lucide-react';
 import { useEditorStore } from '../../store/useEditorStore';
 import { CanvasArea } from './CanvasArea';
@@ -12,6 +12,7 @@ import { GameModeSidebar } from './GameModeSidebar';
 import { PropertiesPanel } from './PropertiesPanel';
 import { TopToolbar } from './TopToolbar';
 import { cn } from '../../lib/utils';
+import { ShareButtons } from './ShareButtons';
 
 interface EditorLayoutProps {
   onBack: () => void;
@@ -269,16 +270,31 @@ export const EditorLayout: React.FC<EditorLayoutProps> = ({ onBack }) => {
 
       {/* Status Bar */}
       {!isFullScreen && (
-        <footer className="h-8 border-t border-[#3a3022] bg-[#0a0908] flex items-center justify-between px-4 text-[9px] uppercase tracking-[0.2em] text-stone-500 font-serif">
-          <div className="flex items-center gap-4">
-            <span>Guild Draft: {config.name}</span>
+        <footer className="h-10 md:h-12 border-t border-[#3a3022] bg-[#0a0908] flex flex-wrap items-center justify-between px-4 text-[9px] uppercase tracking-[0.2em] text-stone-500 font-serif py-1.5 gap-2">
+          <div className="flex items-center gap-4 shrink-0">
+            <div className="flex items-center gap-2">
+              <img 
+                src="https://i.postimg.cc/rpyZ4WwW/Fantacy.png" 
+                alt="FantacyMapMaker" 
+                className="h-4.5 w-auto rounded-sm"
+                referrerPolicy="no-referrer"
+              />
+              <span className="font-serif text-[10px] font-bold text-fantasy-gold uppercase tracking-[0.1em]">FantacyMapMaker</span>
+            </div>
             <div className="hidden xxs:block w-[1px] h-3 bg-[#3a3022]"></div>
             <span className="hidden xxs:inline">Artifacts: {config.objects.length}</span>
           </div>
-          <div className="flex items-center gap-4">
+
+          {/* Share Your Creativity Section */}
+          <div className="flex items-center gap-2 bg-black/40 px-2.5 py-1 rounded border border-[#3a3022]/60 shrink-0">
+            <span className="text-[#e2d8c3]/60 font-sans tracking-wide text-[10px] lowercase normal-case flex items-center gap-1">
+              Share your creativity:
+            </span>
+            <ShareButtons />
+          </div>
+
+          <div className="flex items-center gap-4 shrink-0">
             <span className="hidden xs:inline">v1.0.0 Alchemist Edition</span>
-            <div className="hidden xs:block w-[1px] h-3 bg-[#3a3022]"></div>
-            <span className="flex items-center gap-1 text-fantasy-gold/50"><MousePointer2 className="w-2 h-2" /> Tracked</span>
           </div>
         </footer>
       )}

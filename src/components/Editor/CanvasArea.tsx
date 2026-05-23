@@ -314,6 +314,76 @@ export const CanvasArea: React.FC = () => {
         ctx.lineTo(40, h - 40);
         ctx.closePath();
         break;
+      case 'Diamond': {
+        ctx.moveTo(w / 2, 40);
+        ctx.lineTo(w - 40, h / 2);
+        ctx.lineTo(w / 2, h - 40);
+        ctx.lineTo(40, h / 2);
+        ctx.closePath();
+        break;
+      }
+      case 'Pentagon': {
+        const cx = w / 2;
+        const cy = h / 2;
+        const r = Math.min(w, h) / 2 - 40;
+        for (let i = 0; i < 5; i++) {
+          const angle = -Math.PI / 2 + (i * 2 * Math.PI) / 5;
+          const px = cx + r * Math.cos(angle);
+          const py = cy + r * Math.sin(angle);
+          if (i === 0) {
+            ctx.moveTo(px, py);
+          } else {
+            ctx.lineTo(px, py);
+          }
+        }
+        ctx.closePath();
+        break;
+      }
+      case 'Octagon': {
+        const cx = w / 2;
+        const cy = h / 2;
+        const r = Math.min(w, h) / 2 - 40;
+        for (let i = 0; i < 8; i++) {
+          const angle = -Math.PI / 2 + Math.PI / 8 + (i * 2 * Math.PI) / 8;
+          const px = cx + r * Math.cos(angle);
+          const py = cy + r * Math.sin(angle);
+          if (i === 0) {
+            ctx.moveTo(px, py);
+          } else {
+            ctx.lineTo(px, py);
+          }
+        }
+        ctx.closePath();
+        break;
+      }
+      case 'Oval': {
+        const cx = w / 2;
+        const cy = h / 2;
+        const rx = w / 2 - 40;
+        const ry = h / 2 - 40;
+        ctx.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2);
+        break;
+      }
+      case 'Star': {
+        const cx = w / 2;
+        const cy = h / 2;
+        const rOut = Math.min(w, h) / 2 - 40;
+        const rIn = rOut * 0.45;
+        for (let i = 0; i < 10; i++) {
+          const isOuter = i % 2 === 0;
+          const angle = -Math.PI / 2 + (i * Math.PI) / 5;
+          const r = isOuter ? rOut : rIn;
+          const px = cx + r * Math.cos(angle);
+          const py = cy + r * Math.sin(angle);
+          if (i === 0) {
+            ctx.moveTo(px, py);
+          } else {
+            ctx.lineTo(px, py);
+          }
+        }
+        ctx.closePath();
+        break;
+      }
       case 'Square':
       case 'Rectangle':
         const sizeW = w - 80;

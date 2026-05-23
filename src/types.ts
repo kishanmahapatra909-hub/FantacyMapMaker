@@ -1,4 +1,4 @@
-export type BoardShape = 'Rectangle' | 'Square' | 'Circle' | 'Hexagon' | 'Ancient Scroll' | 'Island Shape' | 'Dragon Shape' | 'Triangle';
+export type BoardShape = 'Rectangle' | 'Square' | 'Circle' | 'Hexagon' | 'Ancient Scroll' | 'Island Shape' | 'Dragon Shape' | 'Triangle' | 'Diamond' | 'Pentagon' | 'Octagon' | 'Oval' | 'Star';
 
 export interface EditorObject {
   id: string;
