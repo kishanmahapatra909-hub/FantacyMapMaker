@@ -1,0 +1,24 @@
+# Force correct MIME type for JavaScript and ES Modules
+<IfModule mod_mime.c>
+  AddType text/javascript .js
+  AddType text/javascript .mjs
+</IfModule>
+
+# Prevent MIME type sniffing
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+</IfModule>
+
+# Fallback routing for Single Page Applications (React/Vite SPA)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  
+  # If the requested file or directory exists, serve it directly
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+  
+  # Otherwise, route everything else to index.html
+  RewriteRule ^ index.html [L]
+</IfModule>
