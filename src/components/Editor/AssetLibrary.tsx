@@ -10,30 +10,17 @@ export const AssetLibrary: React.FC = () => {
   const [bannedFileError, setBannedFileError] = useState<string | null>(null);
 
   const isImageFile = (file: File): boolean => {
-    // Check MIME type first if available
-    if (file.type && !file.type.startsWith('image/')) {
+    // 1. Verify MIME type starts with image/ if present
+    if (file.type && !file.type.toLowerCase().startsWith('image/')) {
       return false;
     }
     
+    // 2. Extract and check the extension
     const fileName = file.name.toLowerCase();
-    
-    // Explicitly BANNED formats
-    const bannedExtensions = [
-      '.pdf', '.doc', '.docx', '.txt', '.rtf', '.xlsx', '.xls', '.csv', '.tsv',
-      '.mp3', '.wav', '.ogg', '.m4a', '.mp4', '.avi', '.mkv', '.mov', '.wmv',
-      '.zip', '.rar', '.7z', '.tar', '.gz',
-      '.js', '.ts', '.jsx', '.tsx', '.py', '.rb', '.go', '.rs', '.java', '.cpp', '.c', '.sh', '.bat',
-      '.html', '.css', '.json', '.xml', '.yml', '.yaml'
-    ];
-    if (bannedExtensions.some(ext => fileName.endsWith(ext))) {
-      return false;
-    }
-
-    // Allowed standard image formats extensions
     const allowedExtensions = ['.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg', '.bmp'];
     const hasAllowedExtension = allowedExtensions.some(ext => fileName.endsWith(ext));
     
-    if (!file.type && !hasAllowedExtension) {
+    if (!hasAllowedExtension) {
       return false;
     }
     
@@ -106,7 +93,27 @@ export const AssetLibrary: React.FC = () => {
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-          <label className="group relative aspect-video bg-black/40 border border-[#3a3022] hover:border-fantasy-gold transition-all cursor-pointer flex flex-col items-center justify-center rounded p-2 text-center">
+          <label 
+            onDragOver={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+            onDrop={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              const file = e.dataTransfer.files?.[0];
+              if (file) {
+                if (!isImageFile(file)) {
+                  setBannedFileError("I cannot process this request. 'Invoke Game Mode' and 'Invoke Artifacts' only support image file formats (such as PNG or JPEG). Please upload a valid image to proceed.");
+                  return;
+                }
+                setBannedFileError(null);
+                const url = URL.createObjectURL(file);
+                setBackground(url);
+              }
+            }}
+            className="group relative aspect-video bg-black/40 border border-[#3a3022] hover:border-fantasy-gold transition-all cursor-pointer flex flex-col items-center justify-center rounded p-2 text-center"
+          >
              <Plus className="w-5 h-5 text-stone-500 group-hover:text-fantasy-gold transition-colors" />
              <span className="text-[9px] mt-1 text-stone-500 font-bold uppercase tracking-widest">Invoke GAME MODE</span>
              <input 
@@ -121,13 +128,43 @@ export const AssetLibrary: React.FC = () => {
                     e.target.value = '';
                     return;
                   }
+                  setBannedFileError(null);
                   const url = URL.createObjectURL(file);
                   setBackground(url);
                 }
               }} 
              />
           </label>
-          <label className="group relative aspect-video bg-black/40 border border-[#3a3022] hover:border-fantasy-gold transition-all cursor-pointer flex flex-col items-center justify-center rounded p-2 text-center">
+          <label 
+            onDragOver={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+            onDrop={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              const file = e.dataTransfer.files?.[0];
+              if (file) {
+                if (!isImageFile(file)) {
+                  setBannedFileError("I cannot process this request. 'Invoke Game Mode' and 'Invoke Artifacts' only support image file formats (such as PNG or JPEG). Please upload a valid image to proceed.");
+                  return;
+                }
+                setBannedFileError(null);
+                const url = URL.createObjectURL(file);
+                addObject({
+                  type: 'stage',
+                  subType: 'custom',
+                  src: url,
+                  x: 100,
+                  y: 100,
+                  width: 200,
+                  height: 200,
+                  metadata: { name: 'Custom Artifact', fitToBoard: true }
+                });
+              }
+            }}
+            className="group relative aspect-video bg-black/40 border border-[#3a3022] hover:border-fantasy-gold transition-all cursor-pointer flex flex-col items-center justify-center rounded p-2 text-center"
+          >
              <Plus className="w-5 h-5 text-stone-500 group-hover:text-fantasy-gold transition-colors" />
              <span className="text-[9px] mt-1 text-stone-500 font-bold uppercase tracking-widest">Invoke Artifact</span>
              <input 
@@ -142,6 +179,7 @@ export const AssetLibrary: React.FC = () => {
                     e.target.value = '';
                     return;
                   }
+                  setBannedFileError(null);
                   const url = URL.createObjectURL(file);
                   addObject({
                     type: 'stage',
