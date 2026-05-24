@@ -479,10 +479,10 @@ export const ASSETS = {
     { name: 'Test', src: images['pirate.png'], type: 'stage', subType: 'Antena' },
     
     { name: 'Ball', src: images['b1all.png'], type: 'stage', subType: 'Ball' },
-    { name: 'Balloon', src: images['balloons.png'], type: 'stage', subType: 'Balloon' },
-    { name: 'Bar', src: images['bar.png'], type: 'stage', subType: 'Bar' },
-    { name: 'Chilling', src: images['chilling.png'], type: 'stage', subType: 'Chilling' },
-    { name: 'Circus Bear', src: images['bear.png'], type: 'stage', subType: 'Circus Bear' },
+    { name: 'Balloon', src: images['balloons1.png'], type: 'stage', subType: 'Balloon' },
+    { name: 'Bar', src: images['bar1.png'], type: 'stage', subType: 'Bar' },
+    { name: 'Chilling', src: images['chilling1.png'], type: 'stage', subType: 'Chilling' },
+    { name: 'Circus Bear', src: images['bear1.png'], type: 'stage', subType: 'Circus Bear' },
 
     
   

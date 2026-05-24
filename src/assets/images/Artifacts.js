@@ -12,10 +12,10 @@ export const images = {
 
 import pirateImg from './pirate_island_quest_map_1779210700182.png';
 import Ball from './b1all.png';
-import Balloons from './balloons.png';
-import bar from './bar.png';
-import chill from './chilling.png';  
-import bear from './Circus bear.png';
+import Balloons from './balloons1.png';
+import bar from './bar1.png';
+import chill from './chilling1.png';  
+import bear from './Circus bear1.png';
 
 
 
@@ -23,8 +23,8 @@ import bear from './Circus bear.png';
 export const images = {
   'pirate.png': pirateImg,
   'b1all.png': Ball,
-  'balloons.png': Balloons,
-  'bar.png': bar,
-  'chilling.png': chill,
-  'bear.png': bear,
+  'balloons1.png': Balloons,
+  'bar1.png': bar,
+  'chilling1.png': chill,
+  'bear1.png': bear,
 };
