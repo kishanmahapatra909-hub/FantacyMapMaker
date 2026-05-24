@@ -478,7 +478,7 @@ export const ASSETS = {
     { name: 'Antena', src: 'https://img.icons8.com/?size=100&id=SHYMAehqJN1p&format=png&color=000000', type: 'stage', subType: 'Antena' },
     { name: 'Test', src: images['pirate.png'], type: 'stage', subType: 'Antena' },
     
-    { name: 'Ball', src: images['ball.png'], type: 'stage', subType: 'Ball' },
+    { name: 'Ball', src: images['b1all.png'], type: 'stage', subType: 'Ball' },
     { name: 'Balloon', src: images['balloons.png'], type: 'stage', subType: 'Balloon' },
     { name: 'Bar', src: images['bar.png'], type: 'stage', subType: 'Bar' },
     { name: 'Chilling', src: images['chilling.png'], type: 'stage', subType: 'Chilling' },
