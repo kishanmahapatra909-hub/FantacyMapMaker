@@ -2,6 +2,7 @@ import { Square, Circle, Triangle, Diamond, Pentagon, Octagon, Star } from 'luci
 import React from 'react';
 // @ts-ignore
 import pirateImg from './assets/images/pirate_island_quest_map_1779210700182.png';
+// @ts-ignore
 import { images } from './assets/images/Artifacts.js';
 
 export const ASSETS = {
@@ -476,14 +477,15 @@ export const ASSETS = {
     { name: 'Radar 2', src: 'https://img.icons8.com/?size=100&id=NkX2DLO7ATck&format=png&color=000000', type: 'stage', subType: 'Radar 2' },
     { name: 'Antena', src: 'https://img.icons8.com/?size=100&id=SHYMAehqJN1p&format=png&color=000000', type: 'stage', subType: 'Antena' },
     { name: 'Test', src: images['pirate.png'], type: 'stage', subType: 'Antena' },
-    /*
+    
+    
     { name: 'Ball', src: images['ball.png'], type: 'stage', subType: 'Ball' },
     { name: 'Balloon', src: images['balloons.png'], type: 'stage', subType: 'Balloon' },
     { name: 'Bar', src: images['bar.png'], type: 'stage', subType: 'Bar' },
     { name: 'Chilling', src: images['chill.png'], type: 'stage', subType: 'Chilling' },
     { name: 'Circus Bear', src: images['bear.png'], type: 'stage', subType: 'Circus Bear' },
 
-    */
+    
   
   
   ],
