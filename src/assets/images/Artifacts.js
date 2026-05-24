@@ -25,6 +25,6 @@ export const images = {
   'ball.png': Ball,
   'balloons.png': Balloons,
   'bar.png': bar,
-  'chill.png': chill,
+  'chilling.png': chill,
   'bear.png': bear,
 };
