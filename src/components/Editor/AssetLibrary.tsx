@@ -2,11 +2,43 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { ASSETS, MAP_TEMPLATES, BOARD_SHAPES } from '../../constants';
 import { useEditorStore } from '../../store/useEditorStore';
-import { Plus, Image as ImageIcon, Search, X, RotateCcw } from 'lucide-react';
+import { Plus, Image as ImageIcon, Search, X, RotateCcw, AlertTriangle } from 'lucide-react';
 
 export const AssetLibrary: React.FC = () => {
   const { addObject, setBackground, setBoardShape, config, stage, zoom } = useEditorStore();
   const [searchQuery, setSearchQuery] = useState('');
+  const [bannedFileError, setBannedFileError] = useState<string | null>(null);
+
+  const isImageFile = (file: File): boolean => {
+    // Check MIME type first if available
+    if (file.type && !file.type.startsWith('image/')) {
+      return false;
+    }
+    
+    const fileName = file.name.toLowerCase();
+    
+    // Explicitly BANNED formats
+    const bannedExtensions = [
+      '.pdf', '.doc', '.docx', '.txt', '.rtf', '.xlsx', '.xls', '.csv', '.tsv',
+      '.mp3', '.wav', '.ogg', '.m4a', '.mp4', '.avi', '.mkv', '.mov', '.wmv',
+      '.zip', '.rar', '.7z', '.tar', '.gz',
+      '.js', '.ts', '.jsx', '.tsx', '.py', '.rb', '.go', '.rs', '.java', '.cpp', '.c', '.sh', '.bat',
+      '.html', '.css', '.json', '.xml', '.yml', '.yaml'
+    ];
+    if (bannedExtensions.some(ext => fileName.endsWith(ext))) {
+      return false;
+    }
+
+    // Allowed standard image formats extensions
+    const allowedExtensions = ['.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg', '.bmp'];
+    const hasAllowedExtension = allowedExtensions.some(ext => fileName.endsWith(ext));
+    
+    if (!file.type && !hasAllowedExtension) {
+      return false;
+    }
+    
+    return true;
+  };
 
   const filteredAssets = searchQuery.trim()
     ? ASSETS.STAGES.filter(asset => 
@@ -48,16 +80,47 @@ export const AssetLibrary: React.FC = () => {
         <h3 className="text-[10px] uppercase tracking-[0.2em] text-stone-500 font-bold mb-4 flex items-center gap-2">
           <ImageIcon className="w-3 h-3" /> Template
         </h3>
+
+        {/* Warning Banner/Notification for banned non-image formats */}
+        {bannedFileError && (
+          <div className="mb-4 p-3 bg-red-950/40 border border-red-500/50 rounded flex flex-col gap-1.5 shadow-lg animate-fadeIn text-stone-200">
+            <div className="flex items-center justify-between gap-2 border-b border-red-950/40 pb-1">
+              <div className="flex items-center gap-1.5 font-bold">
+                <AlertTriangle className="w-3.5 h-3.5 text-red-400 shrink-0 animate-pulse" />
+                <span className="text-[9px] font-bold text-red-300 uppercase tracking-wider font-mono">
+                  Banned Format Attempted
+                </span>
+              </div>
+              <button 
+                onClick={() => setBannedFileError(null)}
+                className="text-stone-500 hover:text-stone-300 transition-colors p-0.5 cursor-pointer"
+                title="Dismiss warning"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            </div>
+            <p className="text-[9.5px] text-stone-350 leading-relaxed font-sans font-medium">
+              {bannedFileError}
+            </p>
+          </div>
+        )}
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <label className="group relative aspect-video bg-black/40 border border-[#3a3022] hover:border-fantasy-gold transition-all cursor-pointer flex flex-col items-center justify-center rounded p-2 text-center">
              <Plus className="w-5 h-5 text-stone-500 group-hover:text-fantasy-gold transition-colors" />
              <span className="text-[9px] mt-1 text-stone-500 font-bold uppercase tracking-widest">Invoke GAME MODE</span>
              <input 
               type="file" 
+              accept="image/png, image/jpeg, image/jpg, image/webp, image/gif, image/svg+xml"
               className="hidden" 
               onChange={(e) => {
                 const file = e.target.files?.[0];
                 if (file) {
+                  if (!isImageFile(file)) {
+                    setBannedFileError("I cannot process this request. 'Invoke Game Mode' and 'Invoke Artifacts' only support image file formats (such as PNG or JPEG). Please upload a valid image to proceed.");
+                    e.target.value = '';
+                    return;
+                  }
                   const url = URL.createObjectURL(file);
                   setBackground(url);
                 }
@@ -69,10 +132,16 @@ export const AssetLibrary: React.FC = () => {
              <span className="text-[9px] mt-1 text-stone-500 font-bold uppercase tracking-widest">Invoke Artifact</span>
              <input 
               type="file" 
+              accept="image/png, image/jpeg, image/jpg, image/webp, image/gif, image/svg+xml"
               className="hidden" 
               onChange={(e) => {
                 const file = e.target.files?.[0];
                 if (file) {
+                  if (!isImageFile(file)) {
+                    setBannedFileError("I cannot process this request. 'Invoke Game Mode' and 'Invoke Artifacts' only support image file formats (such as PNG or JPEG). Please upload a valid image to proceed.");
+                    e.target.value = '';
+                    return;
+                  }
                   const url = URL.createObjectURL(file);
                   addObject({
                     type: 'stage',
