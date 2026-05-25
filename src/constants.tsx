@@ -532,7 +532,7 @@ export const ASSETS = {
 
     { name: 'Pirate Parrot', src: images['parrot.png'], type: 'stage', subType: 'Pirate Parrot' },
     { name: 'Pirate', src: images['pirate.png'], type: 'stage', subType: 'Pirate' },
-    { name: 'pirate-ship.png', src: images['pirate-ship.png'], type: 'stage', subType: 'pirate-ship.png' },
+    { name: 'pirate-ship', src: images['pirate-ship.png'], type: 'stage', subType: 'pirate-ship.png' },
     { name: 'Playing', src: images['play.png'], type: 'stage', subType: 'Playing' },
 
     { name: 'Queen', src: images['queen.png'], type: 'stage', subType: 'Queen' },
