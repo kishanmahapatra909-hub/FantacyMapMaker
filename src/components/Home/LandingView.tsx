@@ -47,7 +47,8 @@ export const LandingView: React.FC<LandingViewProps> = ({ onStart }) => {
       {/* Fixed, fully-visible background image with absolutely no dark overlay */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <img 
-          src="https://i.postimg.cc/d3C8pdDM/Main-Page.png" 
+          //src="https://i.postimg.cc/d3C8pdDM/Main-Page.png" 
+          src="https://i.postimg.cc/JnkZvLNm/Main-Page-Lite.webp"
           alt="Main Page Background" 
           className="w-full h-full object-cover object-center select-none"
           referrerPolicy="no-referrer"
