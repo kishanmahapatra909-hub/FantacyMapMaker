@@ -484,7 +484,104 @@ export const ASSETS = {
     { name: 'Chilling', src: images['chilling1.png'], type: 'stage', subType: 'Chilling' },
     { name: 'Circus Bear', src: images['bear1.png'], type: 'stage', subType: 'Circus Bear' },
 
-    
+    //================================================================================================
+    { name: 'Ball', src: images['b1all.png'], type: 'stage', subType: 'Ball' },
+    { name: 'Balloon', src: images['balloons1.png'], type: 'stage', subType: 'Balloon' },
+    { name: 'Bar', src: images['bar1.png'], type: 'stage', subType: 'Bar' },
+    { name: 'Chilling', src: images['chilling1.png'], type: 'stage', subType: 'Chilling' },
+    { name: 'Circus Bear', src: images['bear1.png'], type: 'stage', subType: 'Circus Bear' },
+    { name: 'Beach-volleybal', src: images['beach-volleyball.png'], type: 'stage', subType: 'Beach-volleybal' },
+
+    { name: 'Circus Elephant', src: images['Circus elephant.png'], type: 'stage', subType: 'Circus Elephant' },
+    { name: 'Mansion', src: images['big-house1.png'], type: 'stage', subType: 'Mansion' },
+    { name: 'Cabin', src: images['cabin.png'], type: 'stage', subType: 'Cabin' },
+    { name: 'Carnival Elephant', src: images['Carnival elephant.png'], type: 'stage', subType: 'Carnival Elephant' },
+    { name: 'Carnival Elephant 2', src: images['Carnival Elephant2.png'], type: 'stage', subType: 'Carnival Elephant 2' },
+
+    { name: 'Circus Tent', src: images['circus-tent.png'], type: 'stage', subType: 'Circus Tent' },
+    { name: 'Coconut Drink', src: images['coconut-drink.png'], type: 'stage', subType: 'Coconut Drink' },
+    { name: 'Coconut', src: images['coconuts.png'], type: 'stage', subType: 'Coconut' },
+    { name: 'Coin', src: images['coin.png'], type: 'stage', subType: 'Coin' },
+    { name: 'Commando', src: images['Commando.png'], type: 'stage', subType: 'Commando' },
+
+    { name: 'Country House', src: images['country-house.png'], type: 'stage', subType: 'Country House' },
+    { name: 'BDeck Chair', src: images['deck-chair.png'], type: 'stage', subType: 'Deck Chair' },
+
+    { name: 'Doctor', src: images['doctor.png'], type: 'stage', subType: 'Doctor' },
+    { name: 'Beach Party', src: images['BeachParty.png'], type: 'stage', subType: 'Beach Party' },
+    { name: 'Eagle', src: images['eagle.png'], type: 'stage', subType: 'Eagle' },
+    { name: 'Students', src: images['elementary.png'], type: 'stage', subType: 'Students' },
+    { name: 'Family', src: images['family.png'], type: 'stage', subType: 'Family' },
+    { name: 'Flamingo-Float', src: images['flamingo-float.png'], type: 'stage', subType: 'Flamingo-Float' },
+    { name: 'BGorilla', src: images['Gorilla.png'], type: 'stage', subType: 'Gorilla' },
+    { name: 'Guard', src: images['Guard.png'], type: 'stage', subType: 'Guard' },
+    { name: 'Gun', src: images['gun.png'], type: 'stage', subType: 'Gun' },
+
+    { name: 'Gymnast', src: images['gymnast.png'], type: 'stage', subType: 'Gymnast' },
+    { name: 'Hot Air Balloon', src: images['hot-air-balloon.png'], type: 'stage', subType: 'Hot Air Balloon' },
+    { name: 'Howler-monkey', src: images['howler-monkey.png'], type: 'stage', subType: 'Howler-monkey' },
+
+    { name: 'Human-cannonball', src: images['human-cannonball.png'], type: 'stage', subType: 'Human-cannonball' },
+    { name: 'Juggler', src: images['juggler.png'], type: 'stage', subType: 'Juggler' },
+    { name: 'Kayaking', src: images['kayaking.png'], type: 'stage', subType: 'Kayaking' },
+    { name: 'Kids', src: images['kids.png'], type: 'stage', subType: 'Kids' },
+    { name: 'King', src: images['king.png'], type: 'stage', subType: 'King' },
+
+
+    { name: 'Light House', src: images['lighthouse.png'], type: 'stage', subType: 'Light House' },
+    { name: 'Map', src: images['map.png'], type: 'stage', subType: 'Map' },
+
+    { name: 'Nursing', src: images['nurse.png'], type: 'stage', subType: 'Nursing' },
+    { name: 'Nursing 2', src: images['nursing.png'], type: 'stage', subType: 'Nursing 2' },
+    { name: 'Palm Tree', src: images['palm-tree.png'], type: 'stage', subType: 'Palm Tree' },
+
+    { name: 'Pirate Parrot', src: images['parrot.png'], type: 'stage', subType: 'Pirate Parrot' },
+    { name: 'Pirate', src: images['pirate.png'], type: 'stage', subType: 'Pirate' },
+    { name: 'pirate-ship.png', src: images['pirate-ship.png'], type: 'stage', subType: 'pirate-ship.png' },
+    { name: 'Playing', src: images['play.png'], type: 'stage', subType: 'Playing' },
+
+    { name: 'Queen', src: images['queen.png'], type: 'stage', subType: 'Queen' },
+    { name: 'Rat', src: images['rat.png'], type: 'stage', subType: 'Rat' },
+
+    { name: 'Red Panda', src: images['red-panda.png'], type: 'stage', subType: 'Red Panda' },
+    { name: 'Road Sign', src: images['road-sign.png'], type: 'stage', subType: 'Road Sign' },
+    { name: 'Sand Bucket', src: images['sand-bucket.png'], type: 'stage', subType: 'Sand Bucket' },
+
+    { name: 'Send Castle', src: images['sand-castle.png'], type: 'stage', subType: 'Sand Castle' },
+    { name: 'Boating', src: images['sea.png'], type: 'stage', subType: 'Boating' },
+
+    { name: 'Seal', src: images['seal.png'], type: 'stage', subType: 'Seal' },
+    { name: 'Sheriff', src: images['Sherif.png'], type: 'stage', subType: 'Sheriff' },
+
+    { name: 'Skull', src: images['skull.png'], type: 'stage', subType: 'Skull' },
+    { name: 'Skyscraper', src: images['skyscraper.png'], type: 'stage', subType: 'Skyscraper' },
+
+    { name: 'Soldier', src: images['Soldier.png'], type: 'stage', subType: 'Soldier' },
+    { name: 'Studying', src: images['students.png'], type: 'stage', subType: 'Studying' },
+
+    { name: 'Kid', src: images['summer.png'], type: 'stage', subType: 'Kid' },
+
+    { name: 'Surfist', src: images['surfist.png'], type: 'stage', subType: 'Surfist' },
+
+    { name: 'Taj Mahal', src: images['taj-mahal.png'], type: 'stage', subType: 'Taj Mahal' },
+    { name: 'Traffic Police', src: images['Traffic Police.png'], type: 'stage', subType: 'Traffic Police' },
+    { name: 'Traffic Policman', src: images['Trafic Policman.png'], type: 'stage', subType: 'Traffic Policman' },
+    { name: 'Unicycling', src: images['unicycle.png'], type: 'stage', subType: 'Unicycling' },
+
+    { name: 'University', src: images['university.png'], type: 'stage', subType: 'University' },
+    { name: 'Villa', src: images['villa.png'], type: 'stage', subType: 'Villa' },
+
+    { name: 'Volleyball-player', src: images['volleyball-player.png'], type: 'stage', subType: 'Volleyball-player' },
+    { name: 'River Rafting', src: images['water-rafting.png'], type: 'stage', subType: 'River Rafting' },
+    { name: 'Writing', src: images['writting.png'], type: 'stage', subType: 'Writing' },
+    { name: 'Zoo', src: images['zoo.png'], type: 'stage', subType: 'Zoo' },
+
+
+    { name: 'Wild Life Park', src: images['WildlifePark.png'], type: 'stage', subType: 'Wild Life Park' },
+
+
+
+    //================================================================================================
   
   
   ],
