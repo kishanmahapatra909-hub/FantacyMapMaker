@@ -505,7 +505,7 @@ export const ASSETS = {
     { name: 'Commando', src: images['Commando.png'], type: 'stage', subType: 'Commando' },
 
     { name: 'Country House', src: images['country-house.png'], type: 'stage', subType: 'Country House' },
-    { name: 'BDeck Chair', src: images['deck-chair.png'], type: 'stage', subType: 'Deck Chair' },
+    { name: 'Deck Chair', src: images['deck-chair.png'], type: 'stage', subType: 'Deck Chair' },
 
     { name: 'Doctor', src: images['doctor.png'], type: 'stage', subType: 'Doctor' },
     { name: 'Beach Party', src: images['BeachParty.png'], type: 'stage', subType: 'Beach Party' },
@@ -513,7 +513,7 @@ export const ASSETS = {
     { name: 'Students', src: images['elementary.png'], type: 'stage', subType: 'Students' },
     { name: 'Family', src: images['family.png'], type: 'stage', subType: 'Family' },
     { name: 'Flamingo-Float', src: images['flamingo-float.png'], type: 'stage', subType: 'Flamingo-Float' },
-    { name: 'BGorilla', src: images['Gorilla.png'], type: 'stage', subType: 'Gorilla' },
+    { name: 'Gorilla', src: images['Gorilla.png'], type: 'stage', subType: 'Gorilla' },
     { name: 'Guard', src: images['Guard.png'], type: 'stage', subType: 'Guard' },
     { name: 'Gun', src: images['gun.png'], type: 'stage', subType: 'Gun' },
 
